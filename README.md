@@ -1,6 +1,6 @@
 # SFCS_Project-CoLamThiMoiCoAn
-## Thông báo cho bài báo cáo số 2:
-- Mỗi người tự hoàn thành bài báo cáo cá nhân.
-- Do mỗi actor sẽ có 1 giao diện khác nhau nên mỗi người tự vẽ bản mock-up(Đơn giản chỉ là bản vẽ giao diện) cho actor mình đảm nhận.
-- Các bạn vui lòng để lại username trên github để mình mời làm cộng tác viên cho dự án này.
-- 10/5 deadline cố làm cho xong ^^
+## Thông báo:
+- Mọi người vào github để xem lại thông báo của nhóm nếu quên.
+- @Minh Võ ô cho t xin username của github để t mời vào nha, xong rồi nhấp vào link mời phía dưới thì mới được là thành viên của nhóm nha.
+- @Lộc Nguyễn ô cx chưa nhấn vào link mời nên cũng nhấn vào luôn nha.
+- Mọi người ghi nhớ link edit Overleaf giùm, tại vì lý do bảo mật nên mình không thể đăng lên github.
