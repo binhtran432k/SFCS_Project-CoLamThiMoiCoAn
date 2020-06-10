@@ -1,7 +1,5 @@
 # SFCS_Project-CoLamThiMoiCoAn
 ## Thông báo:
 - Mọi người vào github để xem lại thông báo của nhóm nếu quên.
-- @Minh Võ ô cho t xin username của github để t mời vào nha, xong rồi nhấp vào link mời phía dưới thì mới được là thành viên của nhóm nha.
-- @Lộc Nguyễn ô cx chưa nhấn vào link mời nên cũng nhấn vào luôn nha.
-- Mọi người ghi nhớ link edit Overleaf giùm, tại vì lý do bảo mật nên mình không thể đăng lên github.
-- Link mời:[https://github.com/binhtran432k/SFCS_Project-CoLamThiMoiCoAn/invitations](https://github.com/binhtran432k/SFCS_Project-CoLamThiMoiCoAn/invitations)
+- Link làm class diagram cho cả team: https://app.lucidchart.com/invitations/accept/a562471d-e741-43d5-9173-85cb55e9dfa0  (mn sửa phần mình trong project đó cho dễ theo dõi)
+- Link làm luồng màn hình: https://www.figma.com/files/project/10159965/SFCS (vào đúng phần mình để làm, dùng lại mấy object của cook dựng sẵn cho mau)
