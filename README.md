@@ -1,8 +1,8 @@
 # SFCS_Project-CoLamThiMoiCoAn
 
-<div style='text-align:center;'>
+<p align='center'>
 <img src='./images/logo.png' alt='Co Lam Thi Moi Co An Logo'/>
-</div>
+</p>
 
 ## Thông báo:
 - Mọi người vào github để xem lại thông báo của nhóm nếu quên.
