@@ -1,4 +1,9 @@
 # SFCS_Project-CoLamThiMoiCoAn
+
+<div style='text-align:center;'>
+<img src='./images/logo.png' alt='Co Lam Thi Moi Co An Logo'/>
+</div>
+
 ## Thông báo:
 - Mọi người vào github để xem lại thông báo của nhóm nếu quên.
 - Link làm class diagram cho cả team: https://app.lucidchart.com/invitations/accept/a562471d-e741-43d5-9173-85cb55e9dfa0  (mn sửa phần mình trong project đó cho dễ theo dõi) ---> nhớ căn method cho nhất quán với method sử dụng trong sequence diagram (chú ý: mỗi entity trong sequence tương ứng với 1 class, method được sử dụng phải có sẵn trong class)
