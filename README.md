@@ -10,3 +10,4 @@
 + link lucid chart đó có chức năng lưu phiên bản với back up như git đó, chỉnh sửa gì đánh dấu phiên bản đó cho dễ nhớ
 - Link làm luồng màn hình: https://www.figma.com/files/project/10410493/SFCS (vào đúng phần mình để làm, dùng lại mấy object của cook dựng sẵn cho mau) --> vào bằng tài khoản nhóm mới được (CoLamMoiCoAnSFCS@gmail.com, pass:sfcs12345)
 -----------------THÔI TRỄ RỒI LÀM LUỒNG MÀN HÌNH BẰNG PPT CHO NHANH, XONG VẼ MẤY MŨI TÊN GIỐNG CHUYỂN MÀN HÌNH BÊN FIGMA------------------
+T5 (18/6) họp team tại Hella Zone H6
