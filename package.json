@@ -1,0 +1,29 @@
+{
+  "name": "sfcs_project-colamthimoicoan",
+  "version": "1.0.0",
+  "description": "<p align='center'> <img src='./images/logo.png' alt='Co Lam Thi Moi Co An Logo'/> </p>",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./app.js",
+    "start-dev": "nodemon ./app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/binhtran432k/SFCS_Project-CoLamThiMoiCoAn.git"
+  },
+  "author": "TranDucBinh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/binhtran432k/SFCS_Project-CoLamThiMoiCoAn/issues"
+  },
+  "homepage": "https://github.com/binhtran432k/SFCS_Project-CoLamThiMoiCoAn#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.3",
+    "express": "^4.17.1",
+    "express-session": "^1.17.1",
+    "firebase-admin": "^8.12.1",
+    "sha256": "^0.2.0",
+    "sqlite3": "^4.2.0"
+  }
+}

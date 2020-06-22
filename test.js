@@ -1,0 +1,11 @@
+var a = "adfsf";
+var b = "adfdsf";
+var as = undefined;
+var c = {[a]: "adfs", b: "sss", d: undefined};
+JSON.stringify(c);
+console.log(c.c);
+console.log(c.d);
+console.log(c);
+console.log(c.d === undefined);
+var asdf = c.e;
+console.log(asdfs);

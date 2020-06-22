@@ -1,0 +1,34 @@
+<%- include('../layout/top') %>
+<div class="signup-form">
+	<input type="text" id="usernameSignup" placeholder="Tài khoản">
+	<input type="password" id="passwordSignup" placeholder="Mật khẩu">
+	<input type="password" id="retypePasswordSignup" placeholder="Nhập lại mật khẩu">
+	<button type="button" onclick="register()">Đăng ký</button>
+</div>
+<script>
+$(document).on('keypress',function(e) {
+    if(e.which == 13) {
+        register();
+    }
+});
+function register() {
+	var data = {};
+	data.username = $('#usernameSignup').val();
+	data.password = $('#passwordSignup').val();
+	data.retypePassword = $('#retypePasswordSignup').val();
+	$.ajax({
+		url: '/customer/register',
+		type: 'POST',
+		contentType: 'application/json',
+		data: JSON.stringify(data),
+		success: function(res){
+			if (res.message === undefined) {
+				window.location.href = '/';
+			} else {
+				alert(res.message);
+			}
+		}
+	});
+}
+</script>
+<%- include('../layout/bottom') %>
