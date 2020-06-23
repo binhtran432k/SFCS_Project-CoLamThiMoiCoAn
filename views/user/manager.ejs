@@ -1,8 +1,11 @@
 <%- include('../layout/top') %>
 <b>Thông tin tài khoản</b>
 <hr>
-Tài khoản: <%= username %><br>
-Loại tài khoản: quản lý<br>
+Id: <%= id %><br>
+Tên: <%= name.last %> <%= name.middle %> <%= name.first %><br>
+Email: <%= email %><br>
+Ngày khởi tạo: <%= new Date(createdDay) %><br>
+Loại tài khoản: Quản lý<br>
 <hr>
 Tính năng đang phát triển
 <%- include('../layout/bottom') %>

@@ -1,8 +1,11 @@
 <%- include('../layout/top') %>
 <div class="signup-form">
-	<input type="text" id="usernameSignup" placeholder="Tài khoản">
-	<input type="password" id="passwordSignup" placeholder="Mật khẩu">
-	<input type="password" id="retypePasswordSignup" placeholder="Nhập lại mật khẩu">
+	<input type="text" id="lastName" placeholder="Họ">*<br>
+	<input type="text" id="middleName" placeholder="Tên đệm"><br>
+	<input type="text" id="firstName" placeholder="Tên">*<br>
+	<input type="text" id="emailInput" placeholder="Email">*<br>
+	<input type="password" id="passwordInput" placeholder="Mật khẩu">*<br>
+	<input type="password" id="retypePasswordInput" placeholder="Nhập lại mật khẩu">*<br>
 	<button type="button" onclick="register()">Đăng ký</button>
 </div>
 <script>
@@ -13,9 +16,14 @@ $(document).on('keypress',function(e) {
 });
 function register() {
 	var data = {};
-	data.username = $('#usernameSignup').val();
-	data.password = $('#passwordSignup').val();
-	data.retypePassword = $('#retypePasswordSignup').val();
+	data.name = {
+		first: $('#firstName').val(),
+		middle: $('#middleName').val(),
+		last: $('#lastName').val()
+	};
+	data.email = $('#emailInput').val();
+	data.password = $('#passwordInput').val();
+	data.retypePassword = $('#retypePasswordInput').val();
 	$.ajax({
 		url: '/customer/register',
 		type: 'POST',

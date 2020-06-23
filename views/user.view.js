@@ -17,7 +17,7 @@ function viewHomepage(req, res, next) {
 	res.render('user/index', {
 		title: 'Trang chủ',
 		loggedin: req.session.loggedin,
-		username: req.session.username
+		email: req.session.email
 	});
 }
 function viewLogin(req, res, next) {
@@ -27,7 +27,7 @@ function viewLogin(req, res, next) {
 		res.render('user/login', {
 			title: 'Đăng nhập',
 			loggedin: req.session.loggedin,
-			username: req.session.username
+			email: req.session.email
 		});
 	}
 }
@@ -38,7 +38,7 @@ function viewRegister(req, res, next) {
 		res.render('user/register', {
 			title: 'Đăng ký tài khoản',
 			loggedin: req.session.loggedin,
-			username: req.session.username
+			email: req.session.email
 		});
 	}
 }
@@ -59,8 +59,11 @@ function controlUserType(req, res, next) {
 	res.render('user/' + userTypeName, {
 		title: 'Bảng điều khiển',
 		loggedin: req.session.loggedin,
-           username: req.session.username,
-           userType: req.session.userType,
-           hash: req.session.hash,
+		id: req.session.uid,
+		name: req.session.name,
+		email: req.session.email,
+        userType: req.session.userType,
+        createdDay: req.session.createdDay,
+        hash: req.session.hash
 	});
 }

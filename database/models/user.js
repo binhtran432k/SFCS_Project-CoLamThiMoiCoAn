@@ -3,14 +3,16 @@ const sha256 = require('sha256');
 
 class User {
     #id;
-    #username;
+    #email;
     #hash;
+    #name;
     #userType;
     #createdDay;
     #valid;
     constructor(userParam) {
         this.#id = userParam.id;
-        this.#username = userParam.username;
+        this.#email = userParam.email;
+        this.#name = userParam.name;
         this.#hash = userParam.hash;
         this.#createdDay = userParam.createdDay;
         this.#userType = userParam.userType;
@@ -22,8 +24,9 @@ class User {
     checkExist() {
         return !(
             this.#id === undefined
-            && this.#username === undefined
+            && this.#email === undefined
             && this.#hash === undefined
+            && this.#name === undefined
             && this.#createdDay === undefined
             && this.#userType === undefined
             && this.#valid === undefined
@@ -39,8 +42,9 @@ class User {
     toJSON(){
         return {
             id: this.#id,
-            username: this.#username,
+            email: this.#email,
             hash: this.#hash,
+            name: this.#name,
             createdDay: this.#createdDay,
             userType: this.#userType,
             valid: this.#valid

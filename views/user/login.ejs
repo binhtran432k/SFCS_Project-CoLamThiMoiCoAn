@@ -1,7 +1,7 @@
 <%- include('../layout/top') %>
 <div class="login-form">
-	<input type="text" id="usernameLogin" placeholder="Tài khoản">
-	<input type="password" id="passwordLogin" placeholder="Mật khẩu">
+	<input type="text" id="emailInput" placeholder="Email">*<br>
+	<input type="password" id="passwordInput" placeholder="Mật khẩu">*<br>
 	<button type="button" onclick="login()">Đăng nhập</button>
 </div>
 <script>
@@ -12,8 +12,8 @@ $(document).on('keypress',function(e) {
 });
 function login () {
 	var data = {};
-	data.username = $('#usernameLogin').val();
-	data.password = $('#passwordLogin').val();
+	data.email = $('#emailInput').val();
+	data.password = $('#passwordInput').val();
 	$.ajax({
 		url: '/user/authenticate',
 		type: 'POST',

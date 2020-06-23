@@ -10,7 +10,7 @@
     <p>
         <a href='/'>Trang chủ</a> ------- 
         <% if (loggedin) { %>
-            <a href="/dashboard">Bảng điều khiển</a> | <a href="/user/logout">Đăng xuất</a> (Tài khoản: <%= username %>)
+            <a href="/dashboard">Bảng điều khiển</a> | <a href="/user/logout">Đăng xuất</a> (Email: <%= email %>)
         <% } else { %>
             <a href='/login'>Đăng nhập</a> | <a href='/register'>Đăng ký</a>
         <% } %>

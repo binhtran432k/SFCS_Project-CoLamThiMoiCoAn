@@ -11,6 +11,10 @@ const errorHandler = require('./helpers/error-handler');
 // Init an Express App.
 const app = express();
 
+// External system
+const FakeEmail = require('./external-system/fake-email/fake.email');
+app.use('/external', FakeEmail);
+
 // View engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');app.set()

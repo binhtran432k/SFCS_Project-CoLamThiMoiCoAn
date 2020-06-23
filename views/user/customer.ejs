@@ -1,8 +1,11 @@
 <%- include('../layout/top') %>
 <b>Thông tin tài khoản</b>
 <hr>
-Tài khoản: <%= username %><br>
-Loại tài khoản: khách hàng<br>
+Id: <%= id %><br>
+Tên: <%= name.last %> <%= name.middle %> <%= name.first %><br>
+Email: <%= email %><br>
+Ngày khởi tạo: <%= new Date(createdDay) %><br>
+Loại tài khoản: Khách hàng<br>
 <hr>
 <a onclick="deleteCustomer()" href="#">Xóa tài khoản</a><br>
 <input type="password" id="passwordVerify" placeholder="Nhập mật khẩu xác nhận">

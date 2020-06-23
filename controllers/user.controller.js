@@ -14,6 +14,7 @@ UserController.get('/user/logout', logout);
 UserController.post('/customer/register', registerCustomer);
 UserController.post('/customer/delete', deleteCustomer);
 UserController.post('/owner/register', registerOwner);
+//UserController.post('/owner/add-cook', addPreCook);
 UserController.post('/manager/get-stalls', getAllStall);
 UserController.post('/manager/add-owner', addPreOwner);
 UserController.post('/manager/cancel-owner', cancelPreOwner);
@@ -23,13 +24,35 @@ UserController.post('/manager/delete-owner', deleteOwner);
 
 module.exports = UserController;
 
+function ValidateEmail(inputText)
+{
+	var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+	if (inputText.match(mailformat)) {
+		return true;
+	} else {
+		return false;
+	}
+}
+function checkPassword(inputtxt) { 
+    var passw=  /^\w{8,20}$/;
+    if (inputtxt.match(passw)) { 
+        return true;
+    } else { 
+        return false;
+    }
+}
+
 function authenticate(req, res, next) {
 	if (req.session.loggedin) {
 		res.status(403).json({message: "Truy cập bị từ chối"});
 		return;
 	}
-	if (!req.body.username || !req.body.password) {
-		res.json({message: "Bạn chưa điền tài khoản hoặc mật khẩu"});
+	if (!ValidateEmail(req.body.email)) {
+		res.status(200).json({message: "Email của bạn không hợp lệ"});
+		return;
+	}
+	if (!checkPassword(req.body.password)) {
+		res.status(200).json({message: "Mật khẩu phải từ 8 đến 20 kí tự và chỉ chấp nhận chữ cái và số"});
 		return;
 	}
     UserDB.authenticate(req.body)
@@ -37,9 +60,11 @@ function authenticate(req, res, next) {
 			if (user) {
 				req.session.loggedin = true;
 				req.session.uid = user.id;
-				req.session.username = user.username;
+				req.session.email = user.email;
+				req.session.name = user.name;
 				req.session.hash = user.hash;
 				req.session.userType = user.userType;
+				req.session.createdDay = user.createdDay;
 				res.json(user);
 			} else {
 				res.status(200).json({
@@ -55,12 +80,20 @@ function registerCustomer(req, res, next) {
 		res.status(403).json({message: "Truy cập bị từ chối"});
 		return;
 	}
+	if (!req.body.name.first || !req.body.name.last) {
+		res.status(200).json({message: "Bạn chưa điền họ và tên đầy đủ"});
+		return;
+	}
+	if (!ValidateEmail(req.body.email)) {
+		res.status(200).json({message: "Email của bạn không hợp lệ"});
+		return;
+	}
 	if (req.body.retypePassword !== req.body.password) {
 		res.json({message: "Mật khẩu của bạn không đồng nhất"});
 		return;
 	}
-	if (!req.body.username || !req.body.password) {
-		res.json({message: "Bạn chưa điền tài khoản hoặc mật khẩu"});
+	if (!checkPassword(req.body.password)) {
+		res.status(200).json({message: "Mật khẩu phải từ 8 đến 20 kí tự và chỉ chấp nhận chữ cái và số"});
 		return;
 	}
 	let userParam = req.body;

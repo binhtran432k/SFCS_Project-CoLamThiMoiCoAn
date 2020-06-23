@@ -20,6 +20,21 @@ class UserDB {
                 return new User(userParam);
             });
     }
+    static async getUserByEmail(email) {
+        return await db.ref('users')
+            .orderByChild('email').equalTo(email)
+            .once('value').then(snap => {
+                let userParam;
+                if (!snap.exists()) {
+                    userParam = {};
+                } else {
+                    let key = Object.keys(snap.toJSON())[0];
+                    userParam = snap.toJSON()[key];
+                    userParam.id = key;
+                }
+                return new User(userParam);
+            });
+    }
     static async getUserById(id) {
         return await db.ref('users').child(id)
             .once('value').then(snap => {
@@ -63,25 +78,25 @@ class UserDB {
     }
     static async createCustomer(userParam) {
         // validate
-        let user = await this.getUserByUsername(userParam.username);
+        let user = await this.getUserByEmail(userParam.email);
         if (user.checkExist()) {
-            throw 'Tài khoản "' + userParam.username + '" đã tồn tại';
+            throw 'Email "' + userParam.email + '" đã tồn tại';
         }
 
         // save user
         let id = await db.ref('users').push();
         let saveUser = {
-            ["users/" + id.key + "/username"]: userParam.username,
+            ["users/" + id.key + "/email"]: userParam.email,
+            ["users/" + id.key + "/name"]: userParam.name,
             ["users/" + id.key + "/hash"]: userParam.hash,
             ["users/" + id.key + "/valid"]: userParam.valid,
             ["users/" + id.key + "/userType"]: userParam.userType,
-            ["usersInfo/" + userParam.username + "/id"]: id.key,
-            ["usersInfo/" + userParam.username + "/createdDay"]: userParam.createdDay,
+            ["users/" + id.key + "/createdDay"]: userParam.createdDay,
         };
         await db.ref().update(saveUser);
     }
-    static async authenticate({ username, password }) {
-        let user = await this.getUserByUsername(username);
+    static async authenticate({ email, password }) {
+        let user = await this.getUserByEmail(email);
         if (user.toJSON().valid !== 1) {
             return;
         }
