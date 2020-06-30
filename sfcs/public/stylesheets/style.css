@@ -1,0 +1,259 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  background-color: #EDDDE8;
+}
+/* header -----------------------------*/
+#header{
+  background-color: #FF6961;
+  position: relative;
+  height: 80px;
+}
+
+#homeLogo{
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  height: 60%;
+  transform: translate(0, -50%);
+}
+
+#content{
+  min-height: 400px;
+  width: 800px;
+  margin: 20px auto;
+}
+
+#foodWrapper{
+  text-align: center;
+}
+.foodItemWrapper{
+  vertical-align: top;
+  display: inline-block;
+  margin: 10px;
+  background-color: #E5E2C0;
+  border: 1px solid #FF6961;
+  box-shadow: 1px 1px 8px #FF6961;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 220px;
+  padding: 10px;
+}
+.foodItemContainer{
+  display: block;
+}
+.foodItemContainer > *{
+  width: 100%;
+  margin: 5px 0;
+}
+.foodItemContainer > img{
+  max-height: 180px;
+  border-radius: 5px;
+}
+
+#footer{
+  text-align: center;
+  font-size: 12px;
+}
+
+.title{
+  text-align: center;
+}
+
+#leftMenu{
+  position: absolute;
+  left: 120px;
+}
+#rightMenu{
+  position: absolute;
+  right: 0;
+}
+#userIcon > a{
+  width: 40px;
+  height: 20px;
+  padding: 10px 0;
+  border-radius: 50%!important;
+  background-color: blueviolet;
+}
+#userIcon:hover > a{
+  background-color: #FFFFFF;
+  color: #FF6961;
+}
+.menu{
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%);
+  height: 30px;
+}
+.menu ul{
+  list-style-type: none;
+}
+.menu ul ul{
+  min-width: 200px;
+}
+.menu > ul > li{
+  position: relative;
+  display: block;
+  float: left;
+  margin: -5px 5px 0 5px;
+}
+.menu li ul{
+  position: absolute;
+  opacity: 0;
+  right: 0;
+  z-index: 1;
+  visibility: hidden;
+  transition: visibility 0.5s linear, opacity 0.5s linear;
+  background-color: #FF6961;
+  transition-delay: 0.5s;
+  margin-top: 5px;
+  border-radius: 0 0 10px 10px;
+}
+.menu li:hover ul{
+  visibility: visible;
+  transition-delay: 0s;
+  opacity: 1;
+}
+.menu li>a:hover{
+  background-color: #FFFFFF;
+  color: #FF6961;
+}
+.menu a{
+  display: block;
+  font-weight: bolder;
+  font-size: 16px;
+  border-radius: 10px;
+  transition: background-color 0.5s;
+  padding: 10px;
+  color: #FFFFFF;
+  text-align: center;
+  text-decoration: none;
+}
+#cartBtn{
+  border: 2px solid #FFFFFF;
+}
+#mobileLeftMenu{
+  display: none;
+}
+@media only screen and (max-width: 808px) {
+  #content{width: 100%;}
+}
+@media only screen and (max-width: 600px) {
+  .hideMobile{display: none;}
+  #mobileLeftMenu{display: block;}
+  #leftMenu{display: none;}
+  #homeLogo{height: 80%;}
+  #header{height: 50px;}
+}
+.input-form{
+  max-width: 300px;
+  width: 80%;
+  margin: 20px auto;
+}
+h1{
+  text-align: center;
+  color: #4d4d4d;
+  font-size: 24px;
+  padding: 20px 0 20px 0;
+}
+.input-form input[type="text"], .input-form input[type="password"]{
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #dddddd;
+  margin-bottom: 15px;
+  box-sizing:border-box;
+}
+button{
+  width: 100%;
+  padding: 15px;
+  background-color: #FF6961;
+  border: 0;
+  border-radius: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-weight: bold;
+  color: #ffffff;
+  max-width: 200px;
+}
+
+#cartWrapper{
+  padding: 0 10px;
+  overflow-x: scroll;
+}
+table {
+  color: black;
+  background: #E5E2C0;
+  border: 2px solid #b4b4b4;
+  font: bold 17px helvetica;
+  padding: 0;
+  margin-top:10px;
+  width: 100%;
+  border-radius: 8px;
+}
+table b{
+  font-size: 20px;
+  color: #b1140c;
+}
+table tr td{
+  color: #666;
+  border-bottom: 2px solid #b4b4b4;
+  border-right: 2px solid #b4b4b4;
+  padding: 5px;
+  text-align: center;
+}
+table tr td:last-child {
+  border-right: none;
+}
+table tr:last-child td {
+  border-bottom: none;
+}
+.cartName {
+  display: block;
+}
+
+.regular-checkbox {
+	-webkit-appearance: none;
+	background-color: #fafafa;
+	border: 1px solid #cacece;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+	padding: 9px;
+	border-radius: 3px;
+	display: inline-block;
+	position: relative;
+}
+.regular-checkbox:active, .regular-checkbox:checked:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+.regular-checkbox:checked {
+	background-color: #e9ecee;
+	border: 1px solid #adb8c0;
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
+	color: #99a1a7;
+}
+.regular-checkbox:checked:after {
+	content: '\2714';
+	font-size: 14px;
+	position: absolute;
+	top: 0px;
+	left: 3px;
+	color: #99a1a7;
+}
+.big-checkbox {
+	padding: 18px;
+}
+.big-checkbox:checked:after {
+	font-size: 28px;
+	left: 6px;
+}
+
+#cartWrapper img{
+  max-width: 100px;
+  max-height: 50px;
+}
+
+a{
+  color: #FF6961;
+}

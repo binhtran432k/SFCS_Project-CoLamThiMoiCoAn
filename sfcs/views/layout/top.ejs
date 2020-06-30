@@ -1,0 +1,61 @@
+<html>
+<head>
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="/fontawesome-free-5.13.1-web/css/all.css" rel="stylesheet">
+    <script src="/javascripts/jquery-3.5.1.min.js"></script>
+    <script src="socket.io/socket.io.js"></script>
+    <script src="javascripts/sfcs-cltmca.js"></script>
+    <script>
+        const socket = io('/');
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <div id="header">
+            <a href="/"><img src="/images/logo.png" alt="Trang chủ" id="homeLogo"></a>
+            <div class="menu" id="leftMenu">
+                <ul>
+                    <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i> Trang chủ</a></li>
+                    <li><a href="/about">Về chúng tôi</a></li>
+                </ul>
+            </div>
+            <div class="menu" id="rightMenu">
+            <%
+            function getRipName (name) {
+                var upperNameArray = name.toUpperCase().split(' ');
+                if (upperNameArray.length > 1) {
+                    return upperNameArray[upperNameArray.length - 2][0] +
+                    upperNameArray[upperNameArray.length - 1][0];
+                } else {
+                    return '\xa0' + upperNameArray[0][0] + '\xa0';
+                }
+            }
+            var ripName = loggedin? getRipName(userName): '\<i class="fa fa-user" aria-hidden="true">\</i>';
+            %>
+                <ul>
+                <% if (userType === 0) { %>
+                    <li><a href="/cart" id="cartBtn"><i class="fa fa-shopping-cart" aria-hidden="true"></i><span class="hideMobile"> Giỏ hàng</span><span id="numCartToPay"></span></a></li>
+                <% } %>
+                    <li id="userIcon"><a href="javascript:void(0);"><%- ripName %></a>
+                    <ul>
+                        <br class="hideMobile">
+                        <hr>
+                    <% if (loggedin) { %>
+                        <li><a href="/dashboard">Bảng điều khiển</a></li>
+                        <hr>
+                        <li><a href="javascript:void(0);" id="logoutBtn">Đăng xuất</a></li>
+                    <% } else { %>
+                        <li><a href="/login">Đăng nhập</a></li>
+                        <li><a href="/register">Đăng ký</a></li>
+                    <% } %>
+                        <span id="mobileLeftMenu">
+                        <hr>
+                        <script>$('#mobileLeftMenu').append($('#leftMenu>ul').html());</script></span>
+                    </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div id="content">

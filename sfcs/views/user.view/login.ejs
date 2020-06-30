@@ -1,0 +1,21 @@
+<%- include('../layout/top') %>
+<div class="input-form">
+	<h1>Đăng nhập</h1>
+	<input type="text" id="usernameInput" placeholder="Tài khoản *">
+	<input type="password" id="passwordInput" placeholder="Mật khẩu *">
+	<button type="button" onclick="login()">Đăng nhập</button>
+</div>
+<script>
+$(document).on('keypress',function(e) {
+    if(e.which == 13) {
+        login();
+    }
+});
+function login () {
+	var data = {};
+	data.loginName = $('#usernameInput').val();
+	data.password = $('#passwordInput').val();
+	socket.emit('clientSendAuthenticate', data);
+}
+</script>
+<%- include('../layout/bottom') %>
