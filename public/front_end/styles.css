@@ -1,0 +1,330 @@
+
+/*----------------------------------*/
+/*-----------DEFAULT SETUP----------*/
+
+*{
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+html{
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    color:black;
+    background-color: #ffffff;
+    text-rendering: optimizeLegibility;
+}
+/*-------------------------------------------------------*/
+/*-------------------------REUSABLE----------------------*/
+/*-------------------------------------------------------*/
+#menu-section, #cart-section, #orderlist-section, #foodlist-section{
+    padding-top: 40px;
+    padding-bottom: 140px;
+    background-image: url('/resources/img/background.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    /*ít nhất là chiếm toàn màn hình -> nếu thêm thức ăn sẽ fix cao hơn*/
+    /* border: yellow solid 2px; */
+}
+
+.clearfix::after{
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.add-to-cart, .check-out-btn, .addfood-btn{
+    position: relative;
+    list-style: none;
+    /* border: yellow solid 2px; */
+    margin-top: 10px;
+    
+    display: inline-block; 
+    color: white;
+
+    text-decoration: none;
+    background-color:  #ff6961;
+    padding: 5px 25px;
+    border-radius: 5px;
+    width: 220px;
+    font-weight: 600;
+    /* padding-left: 30px; */
+    /* margin-bottom: 10px; */
+    /* margin-left: 5px; */
+}
+
+
+/*-------------------------CUSTOMER----------------------*/
+/*--------------------------HEADER-----------------------*/
+/*-------------------------------------------------------*/
+header{
+    background-color: #ff6961;
+    background-size: cover;
+    padding-top: 15px;
+    padding-left: 15px;
+    height: 15vh;
+}
+
+
+
+h1{
+    font-size: 300%;
+    color: white;
+    font-weight: 900;
+    letter-spacing: 2px;
+    float: left;
+    /* border: yellow solid 2px; */
+
+}
+
+.logo{
+    /* border: yellow solid 2px; */
+    margin-left: 10px;
+    float: left;
+}
+
+
+
+.main-nav{
+    float: left;
+    list-style: none;
+    /* border: yellow solid 2px; */
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+.main-nav li{
+    display: inline-block;
+    margin-right: 30px;
+}
+
+.main-nav li a{
+    text-decoration: none;
+    color: white;
+    font-size: 150%;
+    font-weight: 700;
+    transition: 0.3s;
+}
+
+.main-nav li a:hover,
+.main-nav li a:active{
+    border-bottom: 5px solid white;
+}
+
+.loginButton{
+    float: right;
+    list-style: none;
+    /* border: yellow solid 2px; */
+    margin-top: 5px;
+    /* display: inline-block; */
+    color:  #ff6961;
+    margin-right: 15px;
+    text-decoration: none;
+    background-color: white;
+    padding: 5px;
+    border-radius: 20px;
+    width: 120px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.loginButton:hover{
+
+    background-color: seashell;
+}
+
+.add-to-cart:hover, .check-out-btn:hover{
+    background-color: tomato;
+}
+
+/*------------------------CUSTOMER----------------------*/
+/*--------------------------MENU------------------------*/
+/*------------------------------------------------------*/
+
+
+h2{
+    text-align: center;
+    font-size: 200%;
+    font-weight: 700;
+    word-spacing: 6px;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+}
+
+.row{
+    width: 1140px;
+    margin: 0 auto;
+    /* border: violet solid 5px; */
+
+}
+
+.food-box{
+    margin-top: 100px;
+    margin-bottom: 20px;
+    /* padding-top: 20px; */
+    padding: 15px 30px;
+    background-color: rgb(229, 226, 192);
+    box-shadow: 0px 5px 15px 0px tomato;
+    transition: border 0.5s; 
+}
+
+.food-box:hover{
+    border: #ff6961 solid 2px; 
+
+}
+
+.food-box img{
+    width: 200px;
+    border: chocolate solid 2px;
+}
+
+.info-food{
+    font-size: 90%;
+    font-weight: 300;
+    padding-left: 6px;
+    /* margin-left: 15px; */
+    
+}
+
+.name-food{
+    position: relative;
+    top: 0px;
+    left: 15px;
+} 
+
+
+/* .small-icon-cart, .small-icon-checkout, .small-icon-order-status{
+    position: absolute;
+    top: 7px;
+    left: 20px;
+    color: wheat;
+    border: olivedrab solid 2px;
+}  */
+
+/*---------------------CUSTOMER----------------*/
+/*------------------SHOPPING CART--------------*/
+/*---------------------------------------------*/
+table{
+    margin: 0 auto;
+}
+
+th{
+    width: fit-content;
+    height: 80px;
+    background-color: #ff6961;
+    color: white;
+}
+
+td{
+    background-color: rgb(229, 226, 192);
+    height: 200px;
+}
+
+table,th,td{
+    text-align: center;
+    font-weight: 700;
+}
+
+#total-text{
+    position: relative;
+    top: 15px;
+    left: 225px;
+    float: left;
+}
+
+#total-money{
+    position: relative;
+    top: 15px;
+    left: 830px;
+}
+
+.check-out-btn{
+    position: relative;
+    width: 190px;
+    height: 40px;
+    top: 20px;
+    left: 980px;
+}
+
+
+/*---------------------------------------------*/
+/*--------------------COOK---------------------*/
+/*-----------------SET-COLOR------------------*/
+#cook-header, #cook-table th,
+ .addfoodtolist .addfood-btn
+{
+    background-color: #aec6cf;
+}
+
+#cook-login{
+    color: #aec6cf;
+}
+
+#cook-login:hover,
+.addfoodtolist .addfood-btn:hover
+{
+    background-color: rgb(95, 58, 197);
+}
+
+/*---------------------------------------------*/
+/*--------------------COOK---------------------*/
+/*---------------REICEVE-ORDER-----------------*/
+
+
+.orderlist-section a{
+    text-decoration: none;
+}
+
+.orderlist-section select{
+    width: 80%;
+    padding: 10px 15px;
+    border-radius: 4px;
+    background-color: #f1f1f1;;
+}
+
+
+/*---------------------------------------------*/
+/*---------------------COOK--------------------*/
+/*---------------MANAGE-FOOD-STOCK-------------*/
+.addfoodtolist{
+    /* border: springgreen solid 2px; */
+    padding: 25px 600px;
+}
+
+.addfoodtolist h3{
+    float: left;
+    text-align: left;
+    width: 150px;
+}
+
+.addfoodtolist input{
+    border-radius: 4px;
+    width: 100%;
+    height: 30px;
+    padding: 5px;
+    padding-left: 2px;
+    font-weight: 700;
+    font-size: large;
+    margin-bottom: 5px;
+    transition: 0.5s;
+}
+
+.addfoodtolist input:focus{
+  background-color: lightblue;
+}
+
+.addfoodtolist .addfood-btn{
+    text-align: center;
+    margin: 10px 40px;
+}
+
+.foodlist-section #update-btn{
+    text-decoration: none;
+    display: inline-block;
+    margin-left: 1080px;
+    margin-bottom: 15px;
+    border: lightcoral solid 2px;
+}
+
