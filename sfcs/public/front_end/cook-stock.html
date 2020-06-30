@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SFCS Có Làm Mới Có Ăn</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./resources/css/styles.css">
+    <link rel="stylesheet" href="./vendors/css/grid.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+    <script type="text/javascript" src="./resources/js/scripts.js"></script>
+</head>
+<header id="cook-header">
+
+    <h1 class="heading-main-text">Hello Cook!</h1>
+    <a href="#" class="logo"><img src="./resources/img/logo.png" alt="logo"></a>
+
+
+    <ul class="main-nav">
+
+        <li>
+            <i class="fas fa-bell" style="color: white;"></i>
+            <a href="cook_order.html">Trạng thái đơn hàng</a>
+        </li>
+        <li>
+            <i class="fas fa-cubes" style="color: white;"></i>
+            <a href="cook-stock.html">Quản lí kho</a>
+        </li>
+    </ul>
+    <a href="#" class="loginButton" id="cook-login">Đăng nhập</a>
+    <a href="#" class="loginButton" id="cook-login">Đăng ký</a>
+</header>
+
+<section id="foodlist-section">
+    <h2>Danh Sách Món Ăn</h2>
+    <div class="addfoodtolist">
+        <h3>Tên Món Ăn</h3>
+        <input id="txtFoodname">
+        <div class="clearfix"></div>
+        <h3>Giá</h3>
+        <input id="txtFoodprice">
+        <div class="clearfix"></div>
+        <a onclick="AddOneFood()" href="#" class="addfood-btn">Thêm Món Ăn</a>
+    </div>
+
+    <a onclick="UpdateAllToAvailable()" href="#" id="update-btn">Update all to "Available"</a>
+
+    <table border="1" cellspacing="0" width=70% id="cook-table">
+        <tr>
+            <th>FoodID</th>
+            <th>FoodName</th>
+            <th>Price</th>
+            <th>State</th>
+        </tr>
+        <!-- <tr class="food-in-list">
+            <td>1</td>
+            <td>Cơm gà xối mỡ</td>
+            <td>20000 VND</td>
+            <td><a href="#">Available</a></td>
+
+        </tr> -->
+
+        
+        ?
+    </table>
+
+</section>
+
+</html>
