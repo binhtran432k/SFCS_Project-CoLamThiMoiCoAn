@@ -1,15 +1,19 @@
 $(document).ready(function(){
-    socket.on('serverSendRedirect', function(){
+    socket.on('serverSendRedirectHome', function(){
 	    window.location.href = '/';
     })
-    socket.on('serverSendFail', function(data){
+    socket.on('serverSendMessage', function(data){
 	    alert(data.message);
     });
     $('#logoutBtn').click(function(){
-        socket.emit('clientSendLogout');
+        socket.emit('clientLogout');
     });
     socket.emit('clientGetNumCartToPay');
-    socket.on('serverSendNumCartToPay', function(numCartToPay){
-        $('#numCartToPay').html(numCartToPay > 0? ' (' + numCartToPay + ')': '');
+    socket.on('serverSendNumCartToPay', function(data){
+        $('#numCartToPay').html(data.numCartToPay > 0 ?' (' + data.numCartToPay + ')': '');
+    });
+    socket.on('serverChangeCart', function(){
+        socket.emit('clientGetNumCartToPay');
+        socket.emit('clientGetListCartToPay');
     });
 });

@@ -1,0 +1,35 @@
+<h1 class="title">Thực đơn hôm nay</h1>
+<div id="foodWrapper">
+</div>
+<script>
+    function numberWithCommas(x) {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+    function loadFood(ListOfFood) {
+        $('#foodWrapper').html('');
+        ListOfFood.forEach(element => {
+            var digitPrice = numberWithCommas(element.FoodPrice);
+            $('#foodWrapper').append(`
+        <div class="foodItemWrapper">
+            <div class="foodItemContainer" foodID="${element.FoodID}">
+                <img src="/images/foods/${element.FoodID}.${element.ImageName}" alt="Xem chi tiết">
+                <b>${element.FoodName}</b>
+                <p>Giá: ${digitPrice}VNĐ</p>
+                <p>Tiệm ăn: ${element.StallName}</p>
+                <button><i class="fa fa-shopping-cart" aria-hidden="true"></i> Thêm vào giỏ hàng</button>
+            </div>
+        </div>
+            `);
+        });
+    }
+    $(document).ready(function(){
+        socket.emit('clientGetListAllFoods');
+        socket.on('serverSendListAllFoods', function(data){
+            loadFood(data.foods);
+            $('.foodItemContainer>button').click(function(){
+                let foodId = $(this).parent().attr('foodId');
+                socket.emit('clientAddToCart', {foodId: foodId});
+            });
+        });
+    });
+</script>

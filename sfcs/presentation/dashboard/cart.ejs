@@ -1,0 +1,99 @@
+<script>
+'use strict';
+function viewCartPage(parent) {
+    $(parent).html(`
+    <div id="cartWrapper">
+        <div id="cartTable">
+            <table id="cartToPayList">
+            </table>
+        </div>
+        <div style="text-align: center; padding: 10px;" id="sumPriceToPay"></div>
+        <div style="text-align: center; padding: 10px;"><button id="makePayment">Thanh toán</button></div>
+    </div>
+    `);
+    $('#makePayment').on('click', function(){
+        socket.emit('clientMakeOrder');
+        return false;
+    });
+    socket.emit('clientGetListCartToPay');
+}
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
+function viewCartToPay(carts){
+    var sumCartToPay = 0;
+    var sumPreviousStalls = 0
+            //<td>Chọn</td>
+    $('#cartToPayList').html(`
+        <tr>
+            <td>Sản phẩm</td>
+            <td>Giá</td>
+            <td>Số lượng</td>
+            <td>Chỉnh sửa số lượng</td>
+            <td>Xóa sản phẩm</td>
+        </tr>`
+    );
+    var StallName = null;
+    carts.forEach(function (element) {
+        if (element.StallName !== StallName) {
+            StallName = element.StallName;
+            $('#cartToPayList').append(`
+            <tr>
+                <td colspan="5">${StallName}</td>
+            </tr>
+            `);
+        }
+        var fullPrice = element.FoodPrice * element.NumberOfCart;
+        sumCartToPay += element.CartState === 0? 0: fullPrice;
+        var digitPrice = numberWithCommas(element.FoodPrice);
+            /*<td>
+                <input class="regular-checkbox big-checkbox cbCartToPay" type="checkbox"${element.CartState === 0? '': ' checked'}>
+            </td>*/
+        $('#cartToPayList').append(`
+        <tr cartId="${element.CartID}" foodPrice="${element.FoodPrice}" foodId="${element.FoodID}" id="Cart${element.CartID}" stallName="${StallName}">
+            <td>
+            <img src="/images/foods/${element.FoodID}.${element.ImageName}" alt="Xem chi tiết"><span class="cartName">${element.FoodName}</span>
+            </td>
+            <td>${digitPrice}</td>
+            <td>${element.NumberOfCart}</td>
+            <td><a href="javascript:void(0);" class="changeNumCart">Chỉnh sửa<a></td>
+            <td><a href="javascript:void(0);" class="removeCart">Xóa<a></td>
+        </tr>
+        `);
+    });
+    return sumCartToPay;
+}
+$(document).ready(function(){
+    socket.on('serverSendListCartToPay', function(data){
+        if (!$('#cartWrapper').length) {
+            return;
+        }
+        var sumCartToPay = viewCartToPay(data.carts);
+        $('.removeCart').on('click', function(){
+            var stallName = $(this).parent().parent().attr('stallName');
+            var foodName = $(this).parent().parent().children().children('.cartName').html();
+            var wantRemove = confirm('Bạn có chắc là muốn xóa "' + foodName + '" của "' + stallName + '" không ?');
+            if (wantRemove) {
+                var data = {};
+                data.cartId = $(this).parent().parent().attr('cartId');
+                socket.emit('clientRemoveCart', data);
+            }
+            return false;
+        });
+        $('.changeNumCart').on('click', function(){
+            var stallName = $(this).parent().parent().attr('stallName');
+            var foodPrice = $(this).parent().parent().children().eq(1).html();
+            var numFood = $(this).parent().parent().children().eq(2).html();
+            var foodName = $(this).parent().parent().children().children('.cartName').html();
+            var numToChange = prompt('Cửa hàng: "' + stallName + '"\nSản phẩm: "' + foodName + '"\nGiá: ' + foodPrice + ' \n\nSố lượng chỉnh sửa: [Giá trị từ 1 đến 99]', numFood);
+            var data = {};
+            data.cartId = $(this).parent().parent().attr('cartId');
+            if (!numToChange) return;
+            data.numToChange = numToChange;
+            socket.emit('clientChangeCart', data);
+            return false;
+        });
+        $('#sumPriceToPay').html('<b>Tổng cộng: ' + numberWithCommas(sumCartToPay) + 'VNĐ</b>');
+    });
+});
+</script>

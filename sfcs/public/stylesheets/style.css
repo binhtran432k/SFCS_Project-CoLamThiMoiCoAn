@@ -1,3 +1,4 @@
+/* Global element-----------------------  */
 *{
   margin: 0;
   padding: 0;
@@ -6,7 +7,60 @@
 body{
   background-color: #EDDDE8;
 }
-/* header -----------------------------*/
+
+h1{
+  text-align: center;
+  color: #4d4d4d;
+  font-size: 24px;
+  padding: 20px 0 20px 0;
+}
+
+button{
+  width: 100%;
+  padding: 15px;
+  background-color: #FF6961;
+  border: 0;
+  border-radius: 10px;
+  box-sizing: border-box;
+  cursor: pointer;
+  font-weight: bold;
+  color: #ffffff;
+  max-width: 300px;
+}
+
+table {
+  color: black;
+  background: #E5E2C0;
+  border: 2px solid #b4b4b4;
+  font: bold 17px helvetica;
+  padding: 0;
+  margin-top:10px;
+  width: 100%;
+  border-radius: 8px;
+}
+table b{
+  font-size: 20px;
+  color: #b1140c;
+}
+table tr td{
+  color: #666;
+  border-bottom: 2px solid #b4b4b4;
+  border-right: 2px solid #b4b4b4;
+  padding: 5px;
+  text-align: center;
+}
+table tr td:last-child {
+  border-right: none;
+}
+table tr:last-child td {
+  border-bottom: none;
+}
+
+a{
+  color: #FF6961;
+}
+
+/* top: header -----------------------------*/
 #header{
   background-color: #FF6961;
   position: relative;
@@ -19,48 +73,6 @@ body{
   left: 20px;
   height: 60%;
   transform: translate(0, -50%);
-}
-
-#content{
-  min-height: 400px;
-  width: 800px;
-  margin: 20px auto;
-}
-
-#foodWrapper{
-  text-align: center;
-}
-.foodItemWrapper{
-  vertical-align: top;
-  display: inline-block;
-  margin: 10px;
-  background-color: #E5E2C0;
-  border: 1px solid #FF6961;
-  box-shadow: 1px 1px 8px #FF6961;
-  border-radius: 5px;
-  overflow: hidden;
-  width: 220px;
-  padding: 10px;
-}
-.foodItemContainer{
-  display: block;
-}
-.foodItemContainer > *{
-  width: 100%;
-  margin: 5px 0;
-}
-.foodItemContainer > img{
-  max-height: 180px;
-  border-radius: 5px;
-}
-
-#footer{
-  text-align: center;
-  font-size: 12px;
-}
-
-.title{
-  text-align: center;
 }
 
 #leftMenu{
@@ -106,15 +118,15 @@ body{
   right: 0;
   z-index: 1;
   visibility: hidden;
-  transition: visibility 0.5s linear, opacity 0.5s linear;
+  transition: visibility 0.3s linear, opacity 0.3s linear;
   background-color: #FF6961;
-  transition-delay: 0.5s;
+  transition-delay: 0.3s;
   margin-top: 5px;
   border-radius: 0 0 10px 10px;
 }
 .menu li:hover ul{
   visibility: visible;
-  transition-delay: 0s;
+  transition-delay: 0.1s;
   opacity: 1;
 }
 .menu li>a:hover{
@@ -126,7 +138,7 @@ body{
   font-weight: bolder;
   font-size: 16px;
   border-radius: 10px;
-  transition: background-color 0.5s;
+  transition: background-color 0.3s;
   padding: 10px;
   color: #FFFFFF;
   text-align: center;
@@ -135,83 +147,56 @@ body{
 #cartBtn{
   border: 2px solid #FFFFFF;
 }
-#mobileLeftMenu{
-  display: none;
-}
-@media only screen and (max-width: 808px) {
-  #content{width: 100%;}
-}
-@media only screen and (max-width: 600px) {
-  .hideMobile{display: none;}
-  #mobileLeftMenu{display: block;}
-  #leftMenu{display: none;}
-  #homeLogo{height: 80%;}
-  #header{height: 50px;}
-}
-.input-form{
-  max-width: 300px;
-  width: 80%;
+
+/* top: content wrapper--------------  */
+#content{
+  min-height: 400px;
+  width: 800px;
   margin: 20px auto;
-}
-h1{
-  text-align: center;
-  color: #4d4d4d;
-  font-size: 24px;
-  padding: 20px 0 20px 0;
-}
-.input-form input[type="text"], .input-form input[type="password"]{
-  width: 100%;
-  padding: 15px;
-  border: 1px solid #dddddd;
-  margin-bottom: 15px;
-  box-sizing:border-box;
-}
-button{
-  width: 100%;
-  padding: 15px;
-  background-color: #FF6961;
-  border: 0;
-  border-radius: 10px;
-  box-sizing: border-box;
-  cursor: pointer;
-  font-weight: bold;
-  color: #ffffff;
-  max-width: 200px;
+  position: relative;
 }
 
-#cartWrapper{
-  padding: 0 10px;
-  overflow-x: scroll;
-}
-table {
-  color: black;
-  background: #E5E2C0;
-  border: 2px solid #b4b4b4;
-  font: bold 17px helvetica;
-  padding: 0;
-  margin-top:10px;
-  width: 100%;
-  border-radius: 8px;
-}
-table b{
-  font-size: 20px;
-  color: #b1140c;
-}
-table tr td{
-  color: #666;
-  border-bottom: 2px solid #b4b4b4;
-  border-right: 2px solid #b4b4b4;
-  padding: 5px;
+/* home: food wrapper---------------*/
+#foodWrapper{
   text-align: center;
 }
-table tr td:last-child {
-  border-right: none;
+.foodItemWrapper{
+  vertical-align: top;
+  display: inline-block;
+  margin: 10px;
+  background-color: #E5E2C0;
+  border: 1px solid #FF6961;
+  box-shadow: 1px 1px 8px #FF6961;
+  border-radius: 5px;
+  overflow: hidden;
+  width: 220px;
+  padding: 10px;
 }
-table tr:last-child td {
-  border-bottom: none;
-}
-.cartName {
+.foodItemContainer{
   display: block;
+}
+.foodItemContainer > *{
+  width: 100%;
+  margin: 5px 0;
+}
+.foodItemContainer > img{
+  max-height: 180px;
+  border-radius: 5px;
+}
+
+/* bottom: footer wrapper------------*/
+#footer{
+  text-align: center;
+  font-size: 12px;
+}
+
+/* global class css---------------*/
+.title{
+  text-align: center;
+}
+
+.hideDesktop {
+  display: none;
 }
 
 .regular-checkbox {
@@ -242,11 +227,56 @@ table tr:last-child td {
 	color: #99a1a7;
 }
 .big-checkbox {
-	padding: 18px;
+	padding: 16px;
 }
 .big-checkbox:checked:after {
-	font-size: 28px;
+	font-size: 24px;
 	left: 6px;
+}
+
+/* mobile css controller--------------------*/
+@media only screen and (max-width: 808px) {
+  #content{width: 100%;}
+  #dashboardContent{width: 90%!important; padding: 0!important;}
+}
+@media only screen and (max-width: 600px) {
+  .hideMobile{display: none!important;}
+  .hideDesktop{display: block!important;}
+  #homeLogo{height: 80%;}
+  #header{height: 50px; position: fixed; width: 100%; top: 0; left: 0;z-index: 9999;}
+  #content{padding-top: 50px;}
+  #cartWrapper{width: 90vw; margin: auto; padding: 0px!important;}
+  .select-selected{display: block!important;}
+  #dashboardMenu{display: block!important;padding: 0!important;border-radius: unset!important;}
+  #dashboardWrapper{display: block!important;padding: 10px;}
+  .select-hide{display: none!important;}
+  .select-items{position: absolute;}
+}
+
+/* input form css--------------*/
+.input-form{
+  max-width: 300px;
+  width: 80%;
+  margin: 20px auto;
+}
+.input-form input[type="text"], .input-form input[type="password"]{
+  width: 100%;
+  padding: 15px;
+  border: 1px solid #dddddd;
+  margin-bottom: 15px;
+  box-sizing:border-box;
+}
+
+/* dashboard: cart------------*/
+#cartWrapper{
+  padding: 0 10px;
+}
+#cartTable{
+  overflow-x: auto;
+}
+
+.cartName {
+  display: block;
 }
 
 #cartWrapper img{
@@ -254,6 +284,82 @@ table tr:last-child td {
   max-height: 50px;
 }
 
-a{
-  color: #FF6961;
+/* dashboard: main content---------------*/
+#dashboardWrapper{
+  display: table;
+  min-height: inherit;
+}
+#dashboardMenu{
+  padding: 10px;
+  display: table-cell;
+  background-color: #FF6961;
+  border-radius: 5px;
+  transition: 0.3s;
+  font-weight: bolder;
+}
+#dashboardContent{
+  width: 600px;
+  padding: 0 10px;
+  display: table-cell;
+}
+
+/*the container must be positioned relative:*/
+.custom-select {
+  position: relative;
+}
+
+.custom-select select {
+  display: none; /*hide original SELECT element:*/
+}
+
+.select-selected {
+  background-color: #FF6961;
+  display: none;
+}
+
+/*style the arrow inside the select element:*/
+.select-selected:after {
+  position: absolute;
+  content: "";
+  top: 14px;
+  right: 10px;
+  width: 0;
+  height: 0;
+  border: 6px solid transparent;
+  border-color: #fff transparent transparent transparent;
+}
+
+/*point the arrow upwards when the select box is open (active):*/
+.select-selected.select-arrow-active:after {
+  border-color: transparent transparent #fff transparent;
+  top: 7px;
+}
+
+/*style the items (options), including the selected item:*/
+.select-items div,.select-selected {
+  color: #ffffff;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+  cursor: pointer;
+  user-select: none;
+}
+
+/*style items (options):*/
+.select-items {
+  background-color: #FF6961;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+}
+
+/*hide the items when the select box is closed:*/
+.select-hide {
+  display: block;
+}
+
+.select-items div:hover, .same-as-selected {
+  background-color: rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
 }
