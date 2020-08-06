@@ -1,6 +1,7 @@
 'use strict'
 let busy = {};
 let sessionBusy = {};
+let cookBusy = {};
 
 module.exports = class BusyHandling {
     static checkBusy(userId) {
@@ -20,5 +21,14 @@ module.exports = class BusyHandling {
     }
     static removeSessionBusy(sessionId) {
         delete sessionBusy[sessionId];
+    }
+    static checkCookBusy(cookId) {
+        return cookBusy[cookId];
+    }
+    static addCookBusy(cookId) {
+        cookBusy[cookId] = true;
+    }
+    static removeCookBusy(cookId) {
+        delete cookBusy[cookId];
     }
 }

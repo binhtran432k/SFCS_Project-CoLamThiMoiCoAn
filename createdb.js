@@ -60,7 +60,7 @@ CREATE TABLE "Carts" (
         FOREIGN KEY("OrderID") REFERENCES "Orders"("OrderID"),
         FOREIGN KEY("CookID") REFERENCES "Cooks"("CookID")
 );
-
+`/*
 INSERT INTO Users (Email, LoginName, Hash, Username, UserType, CreatedDate, Valid)
 VALUES ('manager@gmail.com', 'manager0123', 'ef797c8118f02dfb649607dd5d3f8c7623048c9c063d532cc95c5ed7a898a64f', 'Ma Na Ger', 0, 1593097162649, 1);
 
@@ -148,5 +148,5 @@ WHERE CartID = 2 AND CartState = 2;
 UPDATE Carts
 SET CartState = 4
 WHERE CartID = 2 AND CartState = 3;
-`;
+`*/;
 db.exec(sql, function(err){if(err)console.log(err.message);});

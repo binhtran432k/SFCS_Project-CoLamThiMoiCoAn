@@ -1,0 +1,73 @@
+<script>
+'use strict';
+function renderListAllOrderToProccess(orders){
+    var orderQueueTable = $('#orderQueueWrapper>table');
+    orderQueueTable.html(`
+    <tr>
+        <td>STT</td>
+        <td>Tên người đặt</td>
+        <td>Số lượng</td>
+        <td>Lựa chọn</td>
+    </tr>
+    `);
+    var curOrderId = 0;
+    var i = 1;
+    var numOrderCarts = 0;
+    orders.forEach(function(e){
+        if (e.OrderID !== curOrderId) {
+            curOrderId = e.OrderID;
+            orderQueueTable.append(`
+            <tr class="rowOrder">
+                <td>${i}</td>
+                <td>${e.CustomerName}</td>
+                <td id="oQstt${i}"></td>
+                <td>
+                    <a class="proccessOrder" href="javascript:void(0);" orderid="${curOrderId}">Thực hiện</a>
+                </td>
+            </tr>
+            `);
+            if (i > 1) {
+                $('#oQstt' + (i - 1)).html(numOrderCarts);
+            }
+            numOrderCarts = 0;
+            i++;
+        }
+        numOrderCarts += e.NumberOfCart;
+        orderQueueTable.append(`
+        <tr>
+            <td></td>
+            <td>
+                <img src="/images/foods/${e.FoodID}.${e.ImageName}" alt="Xem chi tiết"><span class="cartName">${e.FoodName}</span>
+            </td>
+            <td>${e.NumberOfCart}</td>
+            <td>
+                <a class="outOfOrder" href="javascript:void(0);" foodid="${e.FoodID}">Hết hàng</a>
+            </td>
+        </tr>
+        `);
+    });
+    $('#oQstt' + (i - 1)).html(numOrderCarts);
+    $('.proccessOrder').click(function(){
+        console.log($(this).attr('orderid'));
+    });
+    $('.outOfOrder').click(function(){
+        console.log($(this).attr('foodid'));
+    });
+}
+function viewOrderQueue(parent) {
+    $(parent).html(`
+    <div id="orderQueueWrapper">
+        <table></table>
+    </div>
+    `);
+    socket.emit('clientGetListAllOrderToProccess');
+}
+$(document).ready(function(){
+    socket.on('serverSendListAllOrderToProccess', function(data) {
+        renderListAllOrderToProccess(data.orders);
+    });
+    socket.on('serverSendOrderMade', function(){
+        socket.emit('clientGetListAllOrderToProccess');
+    })
+});
+</script>

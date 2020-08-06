@@ -74,6 +74,16 @@ module.exports = class CartDB {
             $userId: userId
         }, callback);
     }
+    static getOwnerIdByOrderId(orderId, callback) {
+        let db = Config.getConnection();
+        db.all(`
+        SELECT DISTINCT f.OwnerID
+        FROM Carts as c
+        INNER JOIN Foods as f
+        ON c.FoodID = f.FoodID
+        WHERE c.OrderID = $orderId AND c.CartState = 2;
+        `, { $orderId: orderId }, callback);
+    }
     static getCartToPayByUserId(userId, callback){
         let db = Config.getConnection();
         db.all(`

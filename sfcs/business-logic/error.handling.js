@@ -45,6 +45,18 @@ module.exports = class ErrorHandling {
             case 13:
                 message = 'Chỉ có tài khoản loại khách hàng mới có chức năng này';
                 break;
+            case 14:
+                message = 'Chỉ có tài khoản loại đầu bếp mới có chức năng này';
+                break;
+            case 15:
+                message = 'Chỉ có tài khoản loại chủ cửa hàng mới có chức năng này';
+                break;
+            case 16:
+                message = 'Chỉ có tài khoản loại quản lý mới có chức năng này';
+                break;
+            case 17:
+                message = 'Chỉ có tài khoản loại tiếp tân mới có chức năng này';
+                break;
             default:
                 message = 'Lỗi không xác định';
         }

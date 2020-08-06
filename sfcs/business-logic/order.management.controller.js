@@ -14,4 +14,13 @@ module.exports = class OrderManagementController {
             }
         });
     }
+    static getListAllOrderToProccess(ownerId, callback) {
+        OrderDB.getOrderListByOwnerId(ownerId, 2, 1, function(err, orders) {
+            if (err) {
+                console.log(err);
+                return callback(0, 'serverSendMessage', 1, null);
+            }
+            return callback(0, 'serverSendListAllOrderToProccess', 0, orders);
+        });
+    }
 }

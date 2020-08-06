@@ -39,6 +39,11 @@ module.exports = class ActionHandling {
                 break;
             case 6:
                 break;
+            case 7:
+                io.sockets.in('StallCook' + data.ownerId).emit(
+                    messageEmit, data
+                );
+                break;
             default:
                 socket.emit('serverSendMessage', 'Lỗi không xác định');
         }

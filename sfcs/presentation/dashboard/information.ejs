@@ -1,0 +1,46 @@
+<script>
+'use strict';
+function viewInformation(parent) {
+    $(parent).html(`
+    <div id="informationWrapper">
+        <table>
+            <tr>
+                <td style="color: #FF6961;">Tên người dùng</td>
+                <td><%= userData.UserName %></td>
+            </tr>
+            <tr>
+                <td style="color: #FF6961;">Tên đăng nhập</td>
+                <td><%= userData.LoginName %></td>
+            </tr>
+            <tr>
+                <td style="color: #FF6961;">Email</td>
+                <td><%= userData.Email %></td>
+            </tr>
+            <tr>
+                <td style="color: #FF6961;">Loại tài khoản</td>
+                <td><%= userTypeText %></td>
+            </tr>
+            <tr>
+                <td style="color: #FF6961;">Ngày khởi tạo</td>
+                <td><% 
+                    let date = new Date(userData.CreatedDate);
+                    let dateStr = date.getDate() + ' / ' + (date.getMonth() + 1) + ' / ' + date.getFullYear()
+                    %><%= dateStr %></td>
+            </tr>
+            <% if (userData.UserType !== 0 && userData.UserType !== 3) { %>
+            <tr>
+                <td style="color: #FF6961;">Tên cửa hàng</td>
+                <td><%= userData.StallName %></td>
+            </tr>
+                <% if (userData.UserType !== 2) { %>
+            <tr>
+                <td style="color: #FF6961;">Tên chủ cửa hàng</td>
+                <td><%= userData.OwnerName %></td>
+            </tr>
+                <% } %>
+            <% } %>
+        </table>
+    </div>
+    `);
+}
+</script>

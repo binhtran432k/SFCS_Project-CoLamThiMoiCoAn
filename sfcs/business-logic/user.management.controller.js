@@ -40,22 +40,8 @@ module.exports = class UserManagementController {
         UserDB.addUser(userName, email, loginName, sha256(password), 0, 1, function (err) {
             if (err && err.errno === 19) {
                 console.log(err);
-                return callback(0, 'serverSendMessage', 10, null);
-            }
-            else if (this.lastID === 1) {
-                UserDB.addManager(function (err) {
-                    if (err) {
-                        console.log(err);
-                        return callback(0, 'serverSendMessage', 1, null);
-                    }
-                    else {
-                        return callback(1, 'serverSendRedirectHome', 0, null);
-                    }
-                });
-            }
-            else if (err) {
-                console.log(err);
-                return callback(0, 'serverSendMessage', 1, null);
+                var messageErr = err.errno === 19? 10: 1;
+                return callback(0, 'serverSendMessage', messageErr, null);
             }
             else {
                 return callback(1, 'serverSendRedirectHome', 0, null);

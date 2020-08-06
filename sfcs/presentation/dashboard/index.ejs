@@ -23,15 +23,27 @@ var fullDashboardOption = {
     orderQueue2: 'Hàng chờ giao sản phẩm'
 }
 var dashboardOption = ['information'];
-%> 
+%>
+<%- include('./information') %>
 <% if (userData.UserType === 0) { %>
-    <%- include('./cart') %>
-    <%
+<%- include('./cart') %>
+<%
     if (option === 'cart') {
         opt = 'cart';
     }
     dashboardOption.push('cart', 'cartHistory');
-    %>
+%>
+<%
+}
+else if (userData.UserType === 1) {
+%>
+<%- include('./order-queue') %>
+<%
+    if (option === 'order-queue') {
+        opt = 'orderQueue';
+    }
+    dashboardOption.push('orderQueue', 'orderProccess', 'foodMenu');
+%>
 <% } %>
 <%
 if (userData.UserType !== 3) {
@@ -40,7 +52,7 @@ if (userData.UserType !== 3) {
 dashboardOption.push('notification');
 %>
 <script>
-    function customSelect (className) {
+    function customSelect(className) {
         function selectedItem(e) {
             /*when an item is clicked, update the original select box,
             and the selected item:*/
@@ -48,15 +60,18 @@ dashboardOption.push('notification');
             s = this.parentNode.parentNode.getElementsByTagName("select")[0];
             sl = s.length;
             h = this.parentNode.previousSibling;
+            var oldSelIndex = s.selectedIndex;
             for (i = 0; i < sl; i++) {
                 if (s.options[i].innerHTML == this.innerHTML) {
                     s.selectedIndex = i;
-                    if (document.createEvent) {
-                        var event = document.createEvent('HTMLEvents');
-                        event.initEvent('change', true, false);
-                        s.dispatchEvent(event);
-                    } else {
-                        s.fireEvent('onchange');
+                    if (oldSelIndex != i) {
+                        if (document.createEvent) {
+                            var event = document.createEvent('HTMLEvents');
+                            event.initEvent('change', true, false);
+                            s.dispatchEvent(event);
+                        } else {
+                            s.fireEvent('onchange');
+                        }
                     }
                     h.innerHTML = this.innerHTML;
                     y = this.parentNode.getElementsByClassName("same-as-selected");
@@ -116,7 +131,7 @@ dashboardOption.push('notification');
                 b.appendChild(c);
             }
             x[i].appendChild(b);
-            a.addEventListener("click", function(e) {
+            a.addEventListener("click", function (e) {
                 /*when the select box is clicked, close any other select boxes,
                 and open/close the current select box:*/
                 e.stopPropagation();
@@ -130,15 +145,21 @@ dashboardOption.push('notification');
         document.addEventListener("click", closeAllSelect);
     }
     function dashboardHandling(option) {
-        switch(option) {
+        switch (option) {
             case 'cart':
                 viewCartPage('#dashboardContent');
+                break;
+            case 'orderQueue':
+                viewOrderQueue('#dashboardContent');
+                break;
+            case 'information':
+                viewInformation('#dashboardContent');
                 break;
             default:
                 $('#dashboardContent').html('');
         }
     }
-    $(document).ready(function (){
+    $(document).ready(function () {
         $('#dashboardMenu').html(`
         <select>
         <% dashboardOption.forEach(function(element){ %>
@@ -148,7 +169,7 @@ dashboardOption.push('notification');
         `);
         customSelect('custom-select');
         dashboardHandling($('#dashboardMenu select').val());
-        $('#dashboardMenu select').change(function(){
+        $('#dashboardMenu select').change(function () {
             dashboardHandling($(this).val());
         });
     });

@@ -84,10 +84,22 @@ module.exports = class CartManagementController {
         CartDB.makeCartBePayment(userId, orderId, function(err){
             if (err) {
                 console.log(err);
-                return callback(0, 'serverSendMessage', 1);
+                return callback(0, 'serverSendMessage', 1, null);
             }
             else {
-                return callback(4, 'serverChangeCart', 0);
+                CartDB.getOwnerIdByOrderId(orderId, function(err, distinctCart) {
+                    if (err) {
+                        console.log(err);
+                        return callback(0, 'serverSendMessage', 1, null);
+                    }
+                    else {
+                        callback(4, 'serverChangeCart', 0, null);
+                        distinctCart.forEach(function(e){
+                            callback(7, 'serverSendOrderMade', 0, e.OwnerID);
+                        });
+                        return;
+                    }
+                });
             }
         });
     }

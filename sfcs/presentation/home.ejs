@@ -22,13 +22,13 @@
             `);
         });
     }
-    $(document).ready(function(){
+    $(document).ready(function () {
         socket.emit('clientGetListAllFoods');
-        socket.on('serverSendListAllFoods', function(data){
+        socket.on('serverSendListAllFoods', function (data) {
             loadFood(data.foods);
-            $('.foodItemContainer>button').click(function(){
+            $('.foodItemContainer>button').click(function () {
                 let foodId = $(this).parent().attr('foodId');
-                socket.emit('clientAddToCart', {foodId: foodId});
+                socket.emit('clientAddToCart', { foodId: foodId });
             });
         });
     });

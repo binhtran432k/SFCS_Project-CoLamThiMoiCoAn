@@ -1,0 +1,73 @@
+@startuml
+left to right direction
+actor :Customer: as cus
+actor :Receptionist: as rep
+actor :Cook: as cok
+actor :Owner: as own
+actor :Manager: as man
+
+rectangle System {
+    usecase (Make order) as (mkO)
+    usecase (Add to cart) as (atC)
+    usecase (Change cart) as (cC)
+    usecase (Remove cart) as (rC)
+    usecase (Make payment) as (mP)
+    usecase (See list of food) as (slF)
+    usecase (See history order) as (shO)
+    usecase (Search food) as (sF)
+    usecase (Deliver order) as (dlO)
+    usecase (See list of complete order) as (slcO)
+    usecase (Accept order) as (aO)
+    usecase (See list of order) as (slO)
+    usecase (Complete order) as (cO)
+    usecase (Change state of stall food) as (cssF)
+    usecase (Make out of food) as (mouF)
+    usecase (See list valid food of stall) as (svlsF)
+    usecase (See list all food of stall) as (salsF)
+    usecase (Add food) as (aF)
+    usecase (Change food) as (uF)
+    usecase (Add Cook/Receptionist) as (aCR)
+    usecase (Disable Cook/Receptionist) as (dCR)
+    usecase (Remove Cook/Receptionist) as (rCR)
+    usecase (See sale food report of own stall) as (ssfR)
+    usecase (Add Owner of stall) as (aSs)
+    usecase (Disable Owner of stall) as (dSs)
+    usecase (Remove Owner of stall) as (rSs)
+    usecase (See sale food report of all stall) as (ssfaR)
+}
+
+cus -- (mkO)
+(mkO) ..> (atC): <<include>>
+(atC) ..> (slF): <<include>>
+(atC) ..> (sF): <<include>>
+(atC) <.. (cC): <<extend>>
+(atC) <.. (rC): <<extend>>
+(mkO) ..> (mP): <<include>>
+(mkO) <.. (shO): <<extend>>
+
+cus <|- rep
+rep -- (dlO)
+(dlO) ..> (slcO): <<include>>
+
+cok -- (cO)
+(cO) ..> (aO): <<include>>
+(aO) ..> (slO): <<include>>
+cok -- (cssF)
+(cssF) ..> (mouF): <<include>>
+(cO) <. (mouF): <<extend>>
+(aO) <. (mouF): <<extend>>
+(cssF) ..> (svlsF): <<include>>
+
+own -- (aF)
+(aF) <.. (uF): <<extend>>
+(uF) .> (salsF): <<include>>
+own -- (aCR)
+(aCR) <.. (dCR): <<extend>>
+(dCR) <.. (rCR): <<extend>>
+own -- (ssfR)
+
+man -- (aSs)
+(aSs) <.. (dSs): <<extend>>
+(dSs) <.. (rSs): <<extend>>
+man -- (ssfaR)
+@enduml
