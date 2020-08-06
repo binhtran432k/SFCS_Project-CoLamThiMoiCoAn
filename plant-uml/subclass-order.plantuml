@@ -1,0 +1,29 @@
+@startuml subclass-user-datatype
+title Sub class diagram of Order datatype
+skinparam ClassAttributeIconSize 0
+
+class "Order" as o <<datatype>> {
+    -orderId
+    -orderState
+    -carts: Cart[]
+}
+class "Cart" as c <<datatype>>
+class "DashboardPage" as da
+class "SocketIO" as so
+class "OrderIO" as oio
+class "OrderManagementController" as omc
+class "OrderDB" as odb
+
+da ..> o: <<use>>
+so ..> o: <<use>>
+oio ..> o: <<use>>
+omc ..> o: <<use>>
+odb ..> o: <<use>>
+
+da .> so: <<use>>
+so .> oio: <<use>>
+oio .> omc: <<use>>
+omc .> odb: <<use>>
+
+o ..> c: <<use>>
+@enduml

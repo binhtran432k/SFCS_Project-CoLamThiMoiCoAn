@@ -1,0 +1,37 @@
+@startuml subclass-user-datatype
+title Sub class diagram of User datatype
+skinparam ClassAttributeIconSize 0
+
+class "User" as u <<datatype>> {
+    -userId
+    -userName
+    -email
+    -loginName
+    -hash
+    -userType
+    -stallName
+    -ownerId
+    -ownerName
+    -stallDescription
+    -valid
+}
+class "LoginPage" as lo
+class "SocketIO" as so
+class "Session" as se
+class "UserIO" as uio
+class "UserManagementController" as umc
+class "UserDB" as udb
+
+lo ..> u: <<use>>
+se ..> u: <<use>>
+so ..> u: <<use>>
+uio ..> u: <<use>>
+umc ..> u: <<use>>
+udb ..> u: <<use>>
+
+lo .> so: <<use>>
+so .> se: <<use>>
+so .> uio: <<use>>
+uio .> umc: <<use>>
+umc .> udb: <<use>>
+@enduml

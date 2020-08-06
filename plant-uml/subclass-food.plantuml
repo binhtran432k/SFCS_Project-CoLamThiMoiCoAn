@@ -1,0 +1,35 @@
+@startuml subclass-user-datatype
+title Sub class diagram of Food datatype
+skinparam ClassAttributeIconSize 0
+
+class "Food" as f <<datatype>> {
+    #foodId
+    #foodName
+    #foodDescription
+    #ownerId
+    #stallName
+    #stallDescription
+    #price
+    #originPrice
+    #foodState
+}
+class "HomePage" as hp
+class "DashboardPage" as da
+class "SocketIO" as so
+class "FoodIO" as fio
+class "FoodManagementController" as fmc
+class "FoodDB" as fdb
+
+hp ..> f: <<use>>
+da ..> f: <<use>>
+so ..> f: <<use>>
+fio ..> f: <<use>>
+fmc ..> f: <<use>>
+fdb ..> f: <<use>>
+
+hp ..> so: <<use>>
+da .> so: <<use>>
+so .> fio: <<use>>
+fio .> fmc: <<use>>
+fmc .> fdb: <<use>>
+@enduml

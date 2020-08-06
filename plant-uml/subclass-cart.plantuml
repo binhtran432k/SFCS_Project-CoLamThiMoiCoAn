@@ -1,0 +1,30 @@
+@startuml subclass-user-datatype
+title Sub class diagram of Cart datatype
+skinparam ClassAttributeIconSize 0
+
+class "Cart" as c <<datatype>> {
+    -cartId
+    -cartState
+    -customerId
+    -cookId
+}
+class "Food" as f <<datatype>>
+class "DashboardPage" as da
+class "SocketIO" as so
+class "CartIO" as cio
+class "CartManagementController" as cmc
+class "CartDB" as cdb
+
+da ..> c: <<use>>
+so ..> c: <<use>>
+cio ..> c: <<use>>
+cmc ..> c: <<use>>
+cdb ..> c: <<use>>
+
+da .> so: <<use>>
+so .> cio: <<use>>
+cio .> cmc: <<use>>
+cmc .> cdb: <<use>>
+
+c --|> f
+@enduml
