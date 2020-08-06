@@ -1,0 +1,211 @@
+@startuml class-diagram
+title Class diagram of smart food court system web app
+skinparam ClassAttributeIconSize 0
+skinparam WrapWidth 200
+
+class sfcs{
+    {static}+main()
+}
+
+class "Express" as ex{
+    +renderPage(req, res, page, title, checkLogin, checkLogout)
+}
+
+class "SocketIO" as sS <<server library>>{
+    +emit()
+    +on()
+}
+
+class "Session" as se{
+    +session()
+}
+
+class "SocketIO" as sC <<client library>>{
+    +emit()
+    +on()
+}
+
+class "HomePage" as ho{
+    {static}+html
+    -numberWithCommas(number)
+    -loadFood(listOfFood)
+}
+
+class "LoginPage" as lo {
+    {static}+html
+    -login()
+}
+
+class "RegisterPage" as reg{
+    {static}+html
+    -register()
+}
+
+class "DashboardPage" as da{
+    {static}+html
+    -customSelect(className)
+    -dashboardHandling(option)
+    -viewInformation(parent)
+    -viewCartPage(parent)
+    -viewOrderQueue(parent)
+}
+
+class "TopLayout" as to {
+    {static}+html
+    -getRipName(name)
+}
+
+class "BottomLayout" as bo {
+    {static}+html
+    -redirectHome()
+    -sendMessage(message)
+}
+
+class "UserIO" as uio {
+    {static}+userIo()
+}
+
+class "OrderIO" as oio {
+    {static}+orderIo()
+}
+
+class "CartIO" as cio {
+    {static}+cartIo()
+}
+
+class "FoodIO" as fio {
+    {static}+foodIo()
+}
+
+class "UserManagementController" as umc{
+    {static}+authenticate(loginName, password, callback)
+    {static}+register(userName, email, loginName, password, retypePassword, callback)
+}
+
+class "CartManagementController" as cmc{
+    {static}+getNumCartToPayByUserId(userId, callback)
+    {static}+addToCart(foodId, userId, callback)
+    {static}+getCartToPay(userId, callback)
+    {static}+removeCart(cartId, callback)
+    {static}+changeCart(cartId, numToChange, callback)
+    {static}+makeCartBePayment(userId, orderId, callback)
+}
+
+class "OrderManagementController" as omc{
+    {static}+makeOrder(callback)
+    {static}+getListAllOrderToProccess(ownerId, callback)
+}
+
+class "FoodManagementController" as fmc{
+    {static}+getListAllFoods(callback)
+}
+
+class "ActionHandling" as ah{
+    {static}+doAction(actionNo, messageEmit, data, io, socket)
+}
+
+class "BusyHandling" as bh{
+    -busy
+    -sessionBusy
+    -cookBusy
+    {static}+checkBusy(userId)
+    {static}+addBusy(userId)
+    {static}+removeBusy(userId)
+    {static}+checkSessionBusy(sessionId)
+    {static}+addSessionBusy(sessionId)
+    {static}+removeSessionBusy(sessionId)
+    {static}+checkCookBusy(cookId)
+    {static}+addCookBusy(cookId)
+    {static}+removeCookBusy(cookId)
+}
+
+class "ErrorHandling" as eh{
+    {static}+getError(errorNo)
+}
+
+class "ValidationChecking" as vc{
+    -checkEmail(inputText)
+    -checkAccount(inputtxt)
+    {static}+checkAuthenticate(loginName, password)
+    {static}+checkRegister(userName, email, retypePassword, password)
+}
+
+class "UserDB" as udb{
+    {static}+getUserByLoginName(loginName, callback)
+    {static}+addUser(userName, email, loginName, hash, userType, valid, callback)
+}
+
+class "CartDB" as cdb{
+    {static}+getNumCartToPayByUserId(userId, callback)
+    {static}+getCartToAdd(foodId, userId, callback)
+    {static}+addToCart(foodId, userId, callback)
+    {static}+removeCartByCartId(cartId, callback)
+    {static}+increaseCartByCartId(cartId, callback)
+    {static}+changeCartByCartId(cartId, numToChange, callback)
+    {static}+makeCartBePayment(userId, orderId, callback)
+    {static}+getOwnerIdByOrderId(orderId, callback)
+    {static}+getCartToPayByUserId(userId, callback)
+}
+
+class "OrderDB" as odb{
+    {static}+addOrder(callback)
+    {static}+getOrderListByOwnerId(ownerId, cartState, foodState, callback)
+}
+
+class "FoodDB" as fdb{
+    {static}+getListAllFoods(callback)
+}
+
+sfcs ..> ex: <<use>>
+sfcs ..> sS: <<use>>
+
+ex .> se: <<use>>
+se <. sS: <<use>>
+
+ex ..> lo: <<use>>
+ex ..> reg: <<use>>
+ex ..> ho: <<use>>
+ex ..> da: <<use>>
+
+
+lo o-- to
+lo o-- bo
+reg o-- to
+reg o-- bo
+ho o-- to
+ho o-- bo
+da o-- to
+da o-- bo
+
+to ..> sC: <<use>>
+
+sS ..> uio: <<use>>
+sS ..> cio: <<use>>
+sS ..> oio: <<use>>
+sS ..> fio: <<use>>
+
+uio ..> umc: <<use>>
+cio ..> cmc: <<use>>
+oio .> cmc: <<use>>
+oio ..> omc: <<use>>
+fio ..> fmc: <<use>>
+
+uio ..> ah: <<use>>
+cio ..> ah: <<use>>
+oio ..> ah: <<use>>
+fio ..> ah: <<use>>
+
+uio ..> bh: <<use>>
+cio ..> bh: <<use>>
+oio ..> bh: <<use>>
+fio ..> bh: <<use>>
+
+ah ..> eh: <<use>>
+
+umc ..> udb: <<use>>
+cmc ..> cdb: <<use>>
+omc ..> odb: <<use>>
+fmc ..> fdb: <<use>>
+
+umc ..> vc: <<use>>
+@enduml

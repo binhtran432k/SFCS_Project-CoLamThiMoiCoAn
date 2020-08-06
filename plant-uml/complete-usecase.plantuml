@@ -1,0 +1,23 @@
+@startuml complete-usecase-diagram
+title Usecase diagram of smart food court system web app which is completed
+left to right direction
+actor :Customer: as cus
+actor :Cook: as cok
+
+rectangle "Smart food court system" <<web app>> {
+    usecase (Make order) as (mkO)
+    usecase (Add to cart) as (atC)
+    usecase (Change cart) as (cC)
+    usecase (Remove cart) as (rC)
+    usecase (See list of food) as (slF)
+    usecase (See list of order) as (slO)
+}
+
+cus -- (mkO)
+(mkO) ..> (atC): <<include>>
+(atC) ..> (slF): <<include>>
+(atC) <.. (cC): <<extend>>
+(atC) <.. (rC): <<extend>>
+
+cok -- (slO)
+@enduml

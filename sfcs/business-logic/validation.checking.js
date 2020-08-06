@@ -17,10 +17,10 @@ function checkAccount(inputtxt) {
 }
 module.exports = class ValidationChecking {
     static checkAuthenticate(loginName, password){
-	    if (!checkAccount(loginName)) {
+        if (!checkAccount(loginName)) {
 		    return 3; // Invalid login name error
-	    }
-	    if (!checkAccount(password)) {
+        }
+        if (!checkAccount(password)) {
             return 4; // Invalid password error
         }
         return 0;

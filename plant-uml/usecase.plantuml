@@ -1,12 +1,14 @@
-@startuml
+@startuml usecase-diagram
+title Usecase diagram of smart food court system web app
 left to right direction
 actor :Customer: as cus
 actor :Receptionist: as rep
 actor :Cook: as cok
 actor :Owner: as own
 actor :Manager: as man
+actor :Payment Gate: as pg
 
-rectangle System {
+rectangle "Smart food court system" <<web app>> {
     usecase (Make order) as (mkO)
     usecase (Add to cart) as (atC)
     usecase (Change cart) as (cC)
@@ -35,6 +37,8 @@ rectangle System {
     usecase (Remove Owner of stall) as (rSs)
     usecase (See sale food report of all stall) as (ssfaR)
 }
+
+(mP) -u-- pg
 
 cus -- (mkO)
 (mkO) ..> (atC): <<include>>

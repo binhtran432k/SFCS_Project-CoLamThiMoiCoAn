@@ -1,0 +1,61 @@
+@startuml package-diagram
+title Package diagram of smart food court system web app
+top to bottom direction
+folder "presentation" {
+    folder "Layout" as lay
+    folder "Login" as lo
+    folder "Register" as reg
+    folder "Home" as ho
+    folder "Dashboard" as da
+    lay <.. lo: <<import>>
+    lay <.. reg: <<import>>
+    lay <.. ho: <<import>>
+    lay <.. da: <<import>>
+}
+folder "io-controller" {
+    folder "UserIO" as uio
+    folder "CartIO" as cio
+    folder "OrderIO" as oio
+    folder "FoodIO" as fio
+}
+folder "business-logic" {
+    folder "UserManagement" as um
+    folder "CartManagement" as cm
+    folder "OrderManagement" as om
+    folder "FoodManagement" as fm
+    folder "BusinessHandle" as sh
+}
+folder "data-access" {
+    folder "UserDB" as udb
+    folder "CartDB" as cdb
+    folder "OrderB" as odb
+    folder "FoodDB" as fdb
+    folder "Config" as con
+    udb ..> con: <<access>>
+    cdb ..> con: <<access>>
+    odb ..> con: <<access>>
+    fdb ..> con: <<access>>
+}
+
+lo ..> uio
+reg ..> uio
+ho ..> fio
+da ..> uio
+da ..> cio
+da ..> oio
+da ..> fio
+
+uio ..> um
+cio ..> cm
+oio ..> om
+fio ..> fm
+uio ..> sh
+cio ..> sh
+oio ..> sh
+fio ..> sh
+
+um ..> udb
+cm ..> cdb
+om ..> odb
+fm ..> fdb
+@enduml

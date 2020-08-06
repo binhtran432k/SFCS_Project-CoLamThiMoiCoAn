@@ -1,0 +1,25 @@
+@startuml deployment-diagram
+title Deployment diagram of smart food court system web app
+left to right direction
+node "Application Server" <<device>> {
+    node "Node.js" as no <<execution enviroment>> {
+        node "Express.js Application" {
+            component "Application Logic"
+            component "Route Handle"
+        }
+        rectangle "Socket.io" as sS <<server library>>
+    }
+    rectangle "sfcs.db" as db <<database>>
+}
+node "Desktop/Mobile" <<device>> {
+    node "Browser" as br <<device>> {
+        rectangle "Html5" <<artifact>> {
+            rectangle "Socket.io" as sC <<client library>>
+        }
+    }
+}
+
+no - br: <<protocol>>\nhttp
+sC <<-->> sS: <<protocol>>\nWebSocket
+no -- db: <<DB driver>>\nSqlite3 Node.js driver
+@enduml
